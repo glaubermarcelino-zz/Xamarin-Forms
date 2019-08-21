@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage Rainbows:DebugRainbow.IsDebug="True" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             mc:Ignorable="d"
+             xmlns:Rainbows="clr-namespace:Xamarin.Forms.DebugRainbows;assembly=Xamarin.Forms.DebugRainbows"
+             NavigationPage.HasNavigationBar="False"
+             Visual="Material"
+             x:Class="Yellow.Views.MapaPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{OnPlatform Android=100,iOS=110}"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="{OnPlatform Android=100,iOS=110}"/>
+            </Grid.RowDefinitions>
+            <Frame  HasShadow="True" Grid.Row="0" BorderColor="#DEDEDE">
+                <SearchBar Placeholder="Buscar"/>
+            </Frame>
+            <maps:Map  Grid.Row="1" x:Name="Mapa"  MapType="Street" VerticalOptions="FillAndExpand" />
+            <FlexLayout 
+                Grid.Row="2" 
+                Direction="Row"
+                AlignItems="Center"
+                >
+                <ImageButton 
+                    Style="{StaticResource RoundedLightButton}"
+                    Source="map_menu.png"
+                    Clicked="ImageButton_Clicked"
+                     />
+                <Button 
+                    Style="{StaticResource YelloButton}"
+                    FlexLayout.Grow="1"
+                    ImageSource="map_scan32x32.png"
+                    Text="SCAN" />
+                <ImageButton 
+                    Style="{StaticResource RoundedLightButton}"
+                    Source="map_location.png"
+                     />
+            </FlexLayout>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
