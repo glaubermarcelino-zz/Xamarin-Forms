@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="MyFloatButton.MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <FlexLayout Direction="Column">
+                <Frame HasShadow="True">
+                    <StackLayout HeightRequest="220" BackgroundColor="Pink" Padding="15">
+                        <Image Source="http://pngimg.com/uploads/dog/dog_PNG50322.png" Aspect="AspectFit"/>
+                    </StackLayout>
+                </Frame>
+                <StackLayout HeightRequest="220" BackgroundColor="white" Padding="15">
+                    <Image Source="https://www.pngarts.com/files/3/Cute-Cartoon-Monkey-PNG-Free-Download.png"/>
+                </StackLayout>
+                <StackLayout HeightRequest="220" BackgroundColor="#bfeb80" Padding="15">
+                    <Image Source="http://pluspng.com/img-png/lion-png-lion-png-clipart-png-image-1366.png"/>
+                </StackLayout>
+                <StackLayout HeightRequest="220" BackgroundColor="PaleVioletRed" Padding="15">
+                    <Image Source="https://www.stickpng.com/assets/images/580b57fbd9996e24bc43bbea.png"/>
+                </StackLayout>
+            </FlexLayout>
+        </ScrollView>
+        <Button 
+            Style="{StaticResource FloatButtonLeft}"
+                        x:Name="btnFloatButton" 
+            Text="Float" 
+            Grid.Row="0" 
+            />
+    </Grid>
+
+</ContentPage>
