@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="AirBnb.TemplateExperiencias">
+  <ContentView.Content>
+        <Frame BorderColor="#e8e8e8" Padding="0" CornerRadius="15" IsClippedToBounds="True">
+            <StackLayout Spacing="0">
+                <Image Source="https://wallpaperaccess.com/full/405435.jpg" 
+                           Aspect="AspectFill"
+                           WidthRequest="170" 
+                           HeightRequest="90"/>
+                <Label Text="Lugares" Margin="15" FontSize="Medium"/>
+            </StackLayout>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

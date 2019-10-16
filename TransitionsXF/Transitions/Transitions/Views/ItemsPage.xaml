@@ -6,9 +6,10 @@
              mc:Ignorable="d"
              x:Class="Transitions.Views.ItemsPage"
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding Id }"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage"
-             sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding Id }">
+             >
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddItem_Clicked" />
@@ -44,7 +45,8 @@
                                    WidthRequest="100" 
                                    Margin="0,8" 
                                    sharedTransitions:Transition.Name="dog" 
-                                   sharedTransitions:Transition.Group="{Binding Id}"/>
+                                   sharedTransitions:Transition.Group="{Binding Id}"
+                                   />
                             <!--<Frame BackgroundColor="Blue" HasShadow="True">
                                 <StackLayout>
                             <Label Text="{Binding Text}" 

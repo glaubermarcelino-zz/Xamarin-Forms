@@ -58,6 +58,8 @@ namespace Transitions.Views
             var tappedItemData = e.Item as Item;
             //this is required in order to pass the views to animate
             SharedTransitionNavigationPage.SetTransitionSelectedGroup(this, tappedItemData.Id);
+            SharedTransitionNavigationPage.SetTransitionDuration(this, 200);
+            SharedTransitionNavigationPage.SetBackgroundAnimation(this, BackgroundAnimation.Flip);
             await Navigation.PushAsync(new ItemDetailPage(tappedItemData));
         }
     }

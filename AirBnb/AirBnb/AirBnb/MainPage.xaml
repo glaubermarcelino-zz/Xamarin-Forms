@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="AirBnb.MainPage">
+
+    <NavigationPage.TitleView>
+        <Frame Padding="0" Margin="10,0,25,0" BorderColor="#e8e8e8">
+            <SearchBar Placeholder="Buscar" BackgroundColor="Transparent"/>
+        </Frame>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="labelTopo">
+                <Setter Property="TextColor" Value="#494949"/>
+                <Setter Property="FontSize" Value="Large"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout Padding="25">
+        <Label Text="O que podemos ajuda-lo a encontrar, Glauber?" Style="{StaticResource labelTopo}"/>
+        <StackLayout Orientation="Horizontal" HeightRequest="150" Margin="0,20,0,0" BindableLayout.ItemsSource="{Binding Itens}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                        <Frame BorderColor="#e8e8e8" Padding="0" CornerRadius="15" IsClippedToBounds="True" >
+                            <StackLayout Spacing="0" >
+                            <Image Source="{Binding ImageURL}" 
+                                   Aspect="AspectFill"
+                                   WidthRequest="150" 
+                                   HeightRequest="110"/>
+                            <Label Text="{Binding Title}" Margin="10,0,5,0" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                            </StackLayout>
+                        </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

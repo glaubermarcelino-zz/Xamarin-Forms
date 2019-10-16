@@ -6,6 +6,9 @@
              mc:Ignorable="d"
              x:Class="Transitions.Views.ItemDetailPage"
              xmlns:sharedTransitions="clr-namespace:Plugin.SharedTransitions;assembly=Plugin.SharedTransitions"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionSelectedGroup="{Binding Id }"
+             sharedTransitions:SharedTransitionNavigationPage.TransitionDuration="200"
+             sharedTransitions:SharedTransitionNavigationPage.BackgroundAnimation="SlideFromRight"
              Title="{Binding Title}">
 
     <StackLayout Spacing="20" Padding="10" BackgroundColor="Blue">
