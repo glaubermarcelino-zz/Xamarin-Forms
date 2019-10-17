@@ -21,7 +21,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout Padding="25">
+    <!--<StackLayout Padding="25">
         <Label Text="O que podemos ajuda-lo a encontrar, Glauber?" Style="{StaticResource labelTopo}"/>
         <StackLayout Orientation="Horizontal" HeightRequest="150" Margin="0,20,0,0" BindableLayout.ItemsSource="{Binding Itens}">
             <BindableLayout.ItemTemplate>
@@ -38,5 +38,83 @@
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </StackLayout>
+
+
+    </StackLayout>-->
+    <StackLayout Padding="5">
+        <Frame Padding="5">
+            <StackLayout>
+                <Label Text="Dashboard" Style="{StaticResource labelTopo}" HorizontalTextAlignment="Center"/>
+                <StackLayout Orientation="Horizontal" HeightRequest="125"  BindableLayout.ItemsSource="{Binding Itens}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BorderColor="#e8e8e8" Padding="0" CornerRadius="15" IsClippedToBounds="True" >
+                                <StackLayout Spacing="0">
+                                    <Image Source="{Binding ImageURL}" 
+                                           Aspect="AspectFill"
+                                           WidthRequest="110" 
+                                           HeightRequest="65"/>
+                                    <Label Text="{Binding Title}" Margin="10,0,5,0" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+        <!--<Frame >
+            <FlexLayout Direction="Row" AlignItems="End" AlignContent="SpaceEvenly">
+                <Label Text="Data: "/>
+                <DatePicker />
+                <SearchBar Placeholder="Buscar"/>
+            </FlexLayout>
+        </Frame>
+        <Frame>
+            <FlexLayout Direction="Row" AlignItems="End" AlignContent="End">
+                <Label Text="Modo Visão"/>
+                <ImageButton HorizontalOptions="End" BackgroundColor="Yellow" Source="grid" HeightRequest="30" WidthRequest="30" FlexLayout.Order="0"/>
+                <ImageButton HorizontalOptions="End" BackgroundColor="Blue" Source="list" HeightRequest="30" WidthRequest="30" FlexLayout.Order="1"/>
+            </FlexLayout>
+        </Frame>-->
+        <Frame Padding="0">
+            <ListView ItemsSource="{Binding Solicitacao}" HasUnevenRows="True" SeparatorVisibility="Default" SelectionMode="Single" RowHeight="50">
+                <ListView.Header>
+                    <Frame HasShadow="True" BackgroundColor="#e8e8e8" Padding="0" Margin="5,5,5,0" CornerRadius="10" IsClippedToBounds="True" BorderColor="Transparent">
+                        <StackLayout>
+                            <SearchBar Placeholder="Buscar"/>
+                        </StackLayout>
+                    </Frame>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Frame>
+                                    <StackLayout Padding="0">
+                                        <Image Source="calendar" Grid.Column="0" Grid.Row="0"/>
+                                        <Image Source="user" Grid.Column="0" Grid.Row="1"/>
+                                        <Image Source="solicitation" Grid.Column="0" Grid.Row="2"/>
+                                        <Label Text="{Binding DataCadastro}" Grid.Column="1" Grid.Row="0"/>
+                                        <Label Text="{Binding Usuario}" Grid.Column="1" Grid.Row="1"/>
+                                        <Label Text="{Binding Descricao}" Grid.Column="1" Grid.Row="2"/>
+                                        <Image Source="Aprovado" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Frame>
     </StackLayout>
 </ContentPage>
