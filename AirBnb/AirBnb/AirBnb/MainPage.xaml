@@ -101,7 +101,7 @@
                     <DataTemplate>
                         <ViewCell MenuItem.Accelerator="tESTE">
                                 <Frame HasShadow="True" Margin="5" BorderColor="AliceBlue">
-                                <Grid ColumnSpacing="0" RowSpacing="0" Margin="5"  InputTransparent="True">
+                                <Grid ColumnSpacing="0" RowSpacing="0" Margin="5"  InputTransparent="True" IsClippedToBounds="True">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
                                     <ColumnDefinition Width="Auto"/>
@@ -117,7 +117,7 @@
                                         <Image Source="user" Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20"/>
                                         <Image Source="solicitation" Grid.Column="0" Grid.Row="2" HeightRequest="20" WidthRequest="20"/>
                                         <Label Text="{Binding DataCadastro,StringFormat='Data: {0}'}" Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Usuario,StringFormat='Usuário: {0}'}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"/>
+                                        <Label Text="{Binding Usuario,StringFormat='Solicitante: {0}'}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"/>
                                         <Label Text="{Binding Descricao, StringFormat='Solicitação: {0}'}" Grid.Column="1" Grid.Row="2" Margin="5,0,0,0"/>
                                         <Image Source="aprovado" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
                             </Grid>
