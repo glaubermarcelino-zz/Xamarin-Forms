@@ -4,12 +4,14 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Visual="Material"
              x:Class="AirBnb.MainPage">
 
     <NavigationPage.TitleView>
-        <Frame Padding="0" Margin="10,0,25,0" BorderColor="#e8e8e8">
-            <SearchBar Placeholder="Buscar" BackgroundColor="Transparent"/>
-        </Frame>
+        <!--<Frame Padding="0" Margin="10,0,25,0" BorderColor="#e8e8e8">
+            --><!--<SearchBar Placeholder="Buscar" BackgroundColor="Transparent"/>--><!--
+        </Frame>-->
+            <Label Text="Painel" TextColor="White" FontSize="Large" FontAttributes="Bold"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Resources>
@@ -44,7 +46,7 @@
     <StackLayout Padding="5">
         <Frame Padding="5">
             <StackLayout>
-                <Label Text="Dashboard" Style="{StaticResource labelTopo}" HorizontalTextAlignment="Center"/>
+                <!--<Label Text="Dashboard" Style="{StaticResource labelTopo}" HorizontalTextAlignment="Center"/>-->
                 <StackLayout Orientation="Horizontal" HeightRequest="125"  BindableLayout.ItemsSource="{Binding Itens}">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
@@ -76,41 +78,50 @@
                 <ImageButton HorizontalOptions="End" BackgroundColor="Blue" Source="list" HeightRequest="30" WidthRequest="30" FlexLayout.Order="1"/>
             </FlexLayout>
         </Frame>-->
+            <Frame HasShadow="True"  Padding="0" Margin="5,5,5,0" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
+                <StackLayout>
+                    <SearchBar Placeholder="Buscar"/>
+                </StackLayout>
+            </Frame>
         <Frame Padding="0">
-            <ListView ItemsSource="{Binding Solicitacao}" HasUnevenRows="True" SeparatorVisibility="Default" SelectionMode="Single" RowHeight="50">
-                <ListView.Header>
-                    <Frame HasShadow="True" BackgroundColor="#e8e8e8" Padding="0" Margin="5,5,5,0" CornerRadius="10" IsClippedToBounds="True" BorderColor="Transparent">
+            <ListView ItemsSource="{Binding Solicitacao}" 
+                      x:Name="lstSolicitacoes" 
+                      HasUnevenRows="True" 
+                      SeparatorVisibility="Default" 
+                      SelectionMode="Single" 
+                      RowHeight="50">
+                <!--<ListView.Header>
+                    <Frame HasShadow="True"  Padding="0" Margin="5,5,5,10" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
                         <StackLayout>
                             <SearchBar Placeholder="Buscar"/>
                         </StackLayout>
                     </Frame>
-                </ListView.Header>
+                </ListView.Header>-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
-                            <Grid RowSpacing="0" ColumnSpacing="0">
+                        <ViewCell MenuItem.Accelerator="tESTE">
+                                <Frame HasShadow="True" Margin="5" BorderColor="AliceBlue">
+                                <Grid ColumnSpacing="0" RowSpacing="0" Margin="5"  InputTransparent="True">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <Frame>
-                                    <StackLayout Padding="0">
-                                        <Image Source="calendar" Grid.Column="0" Grid.Row="0"/>
-                                        <Image Source="user" Grid.Column="0" Grid.Row="1"/>
-                                        <Image Source="solicitation" Grid.Column="0" Grid.Row="2"/>
-                                        <Label Text="{Binding DataCadastro}" Grid.Column="1" Grid.Row="0"/>
-                                        <Label Text="{Binding Usuario}" Grid.Column="1" Grid.Row="1"/>
-                                        <Label Text="{Binding Descricao}" Grid.Column="1" Grid.Row="2"/>
-                                        <Image Source="Aprovado" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2"/>
-                                    </StackLayout>
-                                </Frame>
+                                        <Image Source="calendar" Grid.Column="0" Grid.Row="0" HeightRequest="20" WidthRequest="20"/>
+                                        <Image Source="user" Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20"/>
+                                        <Image Source="solicitation" Grid.Column="0" Grid.Row="2" HeightRequest="20" WidthRequest="20"/>
+                                        <Label Text="{Binding DataCadastro,StringFormat='Data: {0}'}" Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Usuario,StringFormat='Usuário: {0}'}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"/>
+                                        <Label Text="{Binding Descricao, StringFormat='Solicitação: {0}'}" Grid.Column="1" Grid.Row="2" Margin="5,0,0,0"/>
+                                        <Image Source="aprovado" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
                             </Grid>
+                                </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

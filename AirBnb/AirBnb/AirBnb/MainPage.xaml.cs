@@ -9,10 +9,13 @@ namespace AirBnb
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        public MainPageViewModel _mainViewModel;
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
+            _mainViewModel = new MainPageViewModel();
+            BindingContext = _mainViewModel;
+            lstSolicitacoes.ItemsSource = _mainViewModel.Solicitacao;
         }
     }
 }
