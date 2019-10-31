@@ -3,6 +3,7 @@ using MvvmHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace AirBnb.ViewModels
 {
@@ -10,6 +11,14 @@ namespace AirBnb.ViewModels
     {
         public string ImageURL { get; set; }
         public string Title { get; set; }
+        private Command _searchTextCommand;
+
+        public Command SearchTextCommand
+        {
+            get { return _searchTextCommand; }
+            set { _searchTextCommand = value; }
+        }
+
 
         private List<ExplorerItem> _itens;
        
@@ -30,6 +39,8 @@ namespace AirBnb.ViewModels
 
         public MainPageViewModel()
         {
+            
+
             _itens = new List<ExplorerItem>()
             {
                 new ExplorerItem("https://quantocustaviajar.com/blog/wp-content/uploads/2017/01/lugares-mais-bonitos-do-mundo.jpg","Lugares"),

@@ -5,13 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              Visual="Material"
+             NavigationPage.HasNavigationBar="True"
              x:Class="AirBnb.MainPage">
+   
 
     <NavigationPage.TitleView>
         <!--<Frame Padding="0" Margin="10,0,25,0" BorderColor="#e8e8e8">
-            --><!--<SearchBar Placeholder="Buscar" BackgroundColor="Transparent"/>--><!--
+            -->
+        <!--<SearchBar Placeholder="Buscar" BackgroundColor="Transparent"/>-->
+        <!--
         </Frame>-->
-            <Label Text="Painel" TextColor="White" FontSize="Large" FontAttributes="Bold"/>
+        <Label Text="Painel" TextColor="White" FontSize="Large" FontAttributes="Bold"/>
     </NavigationPage.TitleView>
 
     <ContentPage.Resources>
@@ -56,7 +60,7 @@
                                            Aspect="AspectFill"
                                            WidthRequest="110" 
                                            HeightRequest="65"/>
-                                    <Label Text="{Binding Title}" Margin="10,0,5,0" FontSize="Medium" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    <Label Text="{Binding Title}" Margin="10,0,5,0" FontSize="16" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </Frame>
                         </DataTemplate>
@@ -78,18 +82,37 @@
                 <ImageButton HorizontalOptions="End" BackgroundColor="Blue" Source="list" HeightRequest="30" WidthRequest="30" FlexLayout.Order="1"/>
             </FlexLayout>
         </Frame>-->
-            <Frame HasShadow="True"  Padding="0" Margin="5,5,5,0" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
-                <StackLayout>
-                    <SearchBar Placeholder="Buscar"/>
-                </StackLayout>
-            </Frame>
+        <Frame HasShadow="True"  Padding="0" Margin="5,5,5,0" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
+            <StackLayout>
+                <SearchBar 
+                        Placeholder="Buscar" 
+                        x:Name="searchBar"
+                        SearchCommand="{Binding SearchTextCommand}"
+                        SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                        CancelButtonColor="Orange"
+                        PlaceholderColor="Orange"
+                        TextColor="Orange"
+                        HorizontalTextAlignment="Start"
+                        FontSize="Medium"
+                        TextChanged="searchBar_TextChanged"
+                        FontAttributes="Italic"
+                        />
+                <!--<Frame Padding="0">
+                    <FlexLayout Direction="Row" AlignContent="SpaceEvenly" AlignItems="End" HorizontalOptions="EndAndExpand">
+                        <DatePicker x:Name="dataFilter" FlexLayout.Grow="1" FontSize="15" Margin="15,0,0,0"/>
+                        <Label Text="Filter 2" FlexLayout.Grow="1"/>
+                        <Label Text="Filter 3" FlexLayout.Grow="1"/>
+                    </FlexLayout>
+                </Frame>-->
+            </StackLayout>
+        </Frame>
         <Frame Padding="0">
             <ListView ItemsSource="{Binding Solicitacao}" 
-                      x:Name="lstSolicitacoes" 
                       HasUnevenRows="True" 
                       SeparatorVisibility="Default" 
                       SelectionMode="Single" 
-                      RowHeight="50">
+                      RowHeight="50"
+                      x:Name="lstSolicitacoes">
                 <!--<ListView.Header>
                     <Frame HasShadow="True"  Padding="0" Margin="5,5,5,10" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
                         <StackLayout>
@@ -100,28 +123,28 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell MenuItem.Accelerator="tESTE">
-                                <Frame HasShadow="True" Margin="5" BorderColor="AliceBlue">
+                            <Frame HasShadow="True" Margin="5" BorderColor="AliceBlue">
                                 <Grid ColumnSpacing="0" RowSpacing="0" Margin="5"  InputTransparent="True" IsClippedToBounds="True">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="20"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                </Grid.RowDefinitions>
-                                        <Image Source="calendar" Grid.Column="0" Grid.Row="0" HeightRequest="20" WidthRequest="20"/>
-                                        <Image Source="user" Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20"/>
-                                        <Image Source="solicitation" Grid.Column="0" Grid.Row="2" HeightRequest="20" WidthRequest="20"/>
-                                        <Label Text="{Binding DataCadastro,StringFormat='Abertura: {0:dd MMMM, yyyy} ,{0:HH\\:mm:ss}'} " Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" FontAttributes="Bold"/>
-                                        <Label Text="{Binding Usuario,StringFormat='Solicitante: {0}'}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"/>
-                                        <Label Text="{Binding Descricao, StringFormat='Solicitação: {0}'}" Grid.Column="1" Grid.Row="2" Margin="5,0,0,0"/>
-                                        <Image Source="aprovado" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
-                            </Grid>
-                                </Frame>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="calendar" Grid.Column="0" Grid.Row="0" HeightRequest="20" WidthRequest="20"/>
+                                    <Image Source="user" Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20"/>
+                                    <Image Source="solicitation" Grid.Column="0" Grid.Row="2" HeightRequest="20" WidthRequest="20"/>
+                                    <Label Text="{Binding DataCadastro,StringFormat='Abertura: {0:dd MMMM, yyyy} ,{0:HH\\:mm:ss}'} " Grid.Column="1" Grid.Row="0" Margin="5,0,0,0" FontAttributes="Bold"/>
+                                    <Label Text="{Binding Usuario,StringFormat='Solicitante: {0}'}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"/>
+                                    <Label Text="{Binding Descricao, StringFormat='Solicitação: {0}'}" Grid.Column="1" Grid.Row="2" Margin="5,0,0,0"/>
+                                    <Image Source="aprovado" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="3" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
+                                </Grid>
+                            </Frame>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
