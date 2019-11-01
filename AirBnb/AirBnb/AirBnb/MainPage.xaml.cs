@@ -33,5 +33,10 @@ namespace AirBnb
             NavigationPage.SetHasBackButton(this, true);
 
         }
+
+        private void FloatingButton_Clicked(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

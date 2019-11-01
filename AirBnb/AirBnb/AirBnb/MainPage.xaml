@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:behaviors="clr-namespace:AirBnb.Behaviors"
+             xmlns:control="clr-namespace:AirBnb.Controls"
              mc:Ignorable="d"
              Visual="Material"
              x:Class="AirBnb.MainPage">
@@ -47,28 +48,29 @@
 
 
     </StackLayout>-->
-    <StackLayout Padding="5">
-        <Frame Padding="5" BorderColor="Transparent">
-            <StackLayout>
-                <!--<Label Text="Dashboard" Style="{StaticResource labelTopo}" HorizontalTextAlignment="Center"/>-->
-                <StackLayout Orientation="Horizontal" HeightRequest="125"  BindableLayout.ItemsSource="{Binding Itens}">
-                    <BindableLayout.ItemTemplate>
-                        <DataTemplate>
-                            <Frame BorderColor="#e8e8e8" Padding="0" CornerRadius="15" IsClippedToBounds="True" >
-                                <StackLayout Spacing="0">
-                                    <Image Source="{Binding ImageURL}" 
+    
+        <StackLayout Padding="5">
+            <Frame Padding="5" BorderColor="Transparent">
+                <StackLayout>
+                    <!--<Label Text="Dashboard" Style="{StaticResource labelTopo}" HorizontalTextAlignment="Center"/>-->
+                    <StackLayout Orientation="Horizontal" HeightRequest="125"  BindableLayout.ItemsSource="{Binding Itens}">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BorderColor="#e8e8e8" Padding="0" CornerRadius="15" IsClippedToBounds="True" >
+                                    <StackLayout Spacing="0">
+                                        <Image Source="{Binding ImageURL}" 
                                            Aspect="AspectFill"
                                            WidthRequest="110" 
                                            HeightRequest="65"/>
-                                    <Label Text="{Binding Title}" Margin="10,0,5,0" FontSize="16" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                                </StackLayout>
-                            </Frame>
-                        </DataTemplate>
-                    </BindableLayout.ItemTemplate>
+                                        <Label Text="{Binding Title}" Margin="10,0,5,0" FontSize="16" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
                 </StackLayout>
-            </StackLayout>
-        </Frame>
-        <!--<Frame >
+            </Frame>
+            <!--<Frame >
             <FlexLayout Direction="Row" AlignItems="End" AlignContent="SpaceEvenly">
                 <Label Text="Data: "/>
                 <DatePicker />
@@ -82,9 +84,9 @@
                 <ImageButton HorizontalOptions="End" BackgroundColor="Blue" Source="list" HeightRequest="30" WidthRequest="30" FlexLayout.Order="1"/>
             </FlexLayout>
         </Frame>-->
-        <Frame HasShadow="True"  Padding="0" Margin="5,5,5,0" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
-            <StackLayout>
-                <SearchBar 
+            <Frame HasShadow="True"  Padding="0" Margin="5,5,5,0" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
+                <StackLayout>
+                    <SearchBar 
                         Placeholder="Buscar" 
                         x:Name="searchBar"
                         CancelButtonColor="Orange"
@@ -94,62 +96,96 @@
                         FontSize="Medium"
                         Text="{Binding SearchText}"
                         FontAttributes="Italic">
-                    <SearchBar.Behaviors>
-                        <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchTextCommand}"/>
-                    </SearchBar.Behaviors>
-                </SearchBar>
-                <!--<Frame Padding="0">
+                        <SearchBar.Behaviors>
+                            <behaviors:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchTextCommand}"/>
+                        </SearchBar.Behaviors>
+                    </SearchBar>
+                    <!--<Frame Padding="0">
                     <FlexLayout Direction="Row" AlignContent="SpaceEvenly" AlignItems="End" HorizontalOptions="EndAndExpand">
                         <DatePicker x:Name="dataFilter" FlexLayout.Grow="1" FontSize="15" Margin="15,0,0,0"/>
                         <Label Text="Filter 2" FlexLayout.Grow="1"/>
                         <Label Text="Filter 3" FlexLayout.Grow="1"/>
                     </FlexLayout>
                 </Frame>-->
-            </StackLayout>
-        </Frame>
-        <Frame Padding="0">
-            <ListView ItemsSource="{Binding Solicitacao}" 
+                </StackLayout>
+            </Frame>
+            <Frame Padding="0">
+                <ListView ItemsSource="{Binding Solicitacao}" 
                       HasUnevenRows="True" 
                       SeparatorVisibility="Default" 
                       SelectionMode="Single" >
-                <!--<ListView.Header>
+                    <!--<ListView.Header>
                     <Frame HasShadow="True"  Padding="0" Margin="5,5,5,10" CornerRadius="10" IsClippedToBounds="True" BorderColor="#e8e8e8">
                         <StackLayout>
                             <SearchBar Placeholder="Buscar"/>
                         </StackLayout>
                     </Frame>
                 </ListView.Header>-->
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame HasShadow="True" Margin="5" BorderColor="Transparent">
-                                <Grid ColumnSpacing="0" RowSpacing="0" Margin="5"  InputTransparent="True" IsClippedToBounds="True">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="20"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
-                                    <Image Source="calendar" Grid.Column="0" Grid.Row="0" HeightRequest="20" WidthRequest="20"/>
-                                    <Image Source="user" Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20"/>
-                                    <Image Source="solicitation" Grid.Column="0" Grid.Row="2" HeightRequest="20" WidthRequest="20"/>
-                                    <Label Text="{Binding DataCadastro,StringFormat='Abertura: {0:dd MMMM, yyyy} ,{0:HH\\:mm:ss}'} " Grid.Column="1" Grid.Row="0" Margin="5,0,5,0" FontAttributes="Bold"/>
-                                    <Label Text="{Binding Usuario,StringFormat='Solicitante: {0}'}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"/>
-                                    <Label Text="{Binding Descricao, StringFormat='Solicitação: {0}'}" Grid.Column="1" Grid.Row="2" Margin="5,0,0,0"/>
-                                    <Image Source="{Binding Status}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
-                                <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                                </Grid.GestureRecognizers>
-                                </Grid>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Frame>
-    </StackLayout>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame HasShadow="True" Margin="5" BorderColor="Transparent">
+                                    <Grid ColumnSpacing="0" RowSpacing="0" Margin="5"  InputTransparent="True" IsClippedToBounds="True">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="calendar" Grid.Column="0" Grid.Row="0" HeightRequest="20" WidthRequest="20"/>
+                                        <Image Source="user" Grid.Column="0" Grid.Row="1" HeightRequest="20" WidthRequest="20"/>
+                                        <Image Source="solicitation" Grid.Column="0" Grid.Row="2" HeightRequest="20" WidthRequest="20"/>
+                                        <Label Text="{Binding DataCadastro,StringFormat='Abertura: {0:dd MMMM, yyyy} ,{0:HH\\:mm:ss}'} " Grid.Column="1" Grid.Row="0" Margin="5,0,5,0" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Usuario,StringFormat='Solicitante: {0}'}" Grid.Column="1" Grid.Row="1" Margin="5,0,0,0"/>
+                                        <Label Text="{Binding Descricao, StringFormat='Solicitação: {0}'}" Grid.Column="1" Grid.Row="2" Margin="5,0,0,0"/>
+                                        <Image Source="{Binding Status}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="3" HeightRequest="20" WidthRequest="20" HorizontalOptions="End"/>
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                        </Grid.GestureRecognizers>
+                                    </Grid>
+                                </Frame>
+                                <ViewCell.ContextActions>
+                                    <MenuItem x:Name="OnMore" CommandParameter="{Binding .}" Text="Mais" />
+                                    <MenuItem x:Name="OnDelete" CommandParameter="{Binding .} " Text="Deletar" IsDestructive="True" />
+                                </ViewCell.ContextActions>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <!--<ListView.Footer>-->
+                    <!--<RelativeLayout>
+                        <control:FloatingButton RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=1, Constant=-80}" 
+                                RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1, Constant=-80}"
+                                Clicked="FloatingButton_Clicked"
+                                Text="&#xf067;">
+
+                            <control:FloatingButton.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.ttf#Font Awesome 5 Free Regular"
+                                                       iOS="Font Awesome 5 Free" />
+
+                            </control:FloatingButton.FontFamily>
+                        </control:FloatingButton>
+                    </RelativeLayout>-->
+
+                    <!--</ListView.Footer>-->
+                </ListView>
+            </Frame>
+        <AbsoluteLayout>
+            <Button Text="&#xf067;"
+                                BackgroundColor="Red"
+                                CornerRadius="100"
+                                TextColor="White"
+                                AbsoluteLayout.LayoutFlags="PositionProportional"  
+                                AbsoluteLayout.LayoutBounds=".95,.95,65,65"
+                                >
+                <Button.FontFamily>
+                    <OnPlatform x:TypeArguments="x:String" Android="fa-solid-900.ttf#Font Awesome 5 Free Regular"
+                                                       iOS="Font Awesome 5 Free" />
+                </Button.FontFamily>
+            </Button>
+    </AbsoluteLayout>
+        </StackLayout>
 </ContentPage>

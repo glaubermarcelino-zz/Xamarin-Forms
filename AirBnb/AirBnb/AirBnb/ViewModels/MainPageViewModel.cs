@@ -1,6 +1,7 @@
 ﻿using AirBnb.Models;
 using MvvmHelpers;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
@@ -65,10 +66,10 @@ namespace AirBnb.ViewModels
 
         public MainPageViewModel()
         {
-            _itens = GetItens();
-            _solicitacoesNaoFiltradas = GetSolicitacao();
-            _solicitacao = _solicitacoesNaoFiltradas;
-            _searchTextCommand = new Command(PerformSearch);
+            _itens                      = new ObservableCollection<ExplorerItem>(GetItens());
+            _solicitacoesNaoFiltradas   = new ObservableCollection<Solicitacao>(GetSolicitacao());
+            _solicitacao                = new ObservableCollection<Solicitacao>(GetSolicitacao());
+            _searchTextCommand          = new Command(PerformSearch);
         }
 
         private void PerformSearch()
@@ -79,22 +80,20 @@ namespace AirBnb.ViewModels
             }
             else
             {
-                var lista = (_solicitacoesNaoFiltradas
-                                                .Where(su => su.Descricao.ToLower()
-                                                .Contains(_searchText.ToLower()))).ToList();
+                if (_searchText.Length>3) {
+                    var lista = _solicitacoesNaoFiltradas
+                                                    .Where(su => su.Descricao.ToLower()
+                                                    .Contains(_searchText.ToLower()));
 
-                _solicitacoesFiltradas = new ObservableCollection<Solicitacao>(
-                                                _solicitacoesNaoFiltradas
-                                                .Where(su => su.Descricao.ToLower()
-                                                .Contains(_searchText.ToLower())).ToList()
-                                        );
-                _solicitacao = _solicitacoesFiltradas;
+                    _solicitacoesFiltradas = new ObservableCollection<Solicitacao>(lista);
+                    _solicitacao = _solicitacoesFiltradas;
+                }
             }
         }
 
-        private static ObservableCollection<Solicitacao> GetSolicitacao()
+        private static List<Solicitacao> GetSolicitacao()
         {
-            return new ObservableCollection<Solicitacao>()
+            return new List<Solicitacao>()
             {
                 new Solicitacao{ SolicitacaoId = 1,Usuario="Glauber Marcelino da Silva",DataCadastro = DateTime.Now,Descricao="Solicitacão de Teste 1",Status="pendente" },
                 new Solicitacao{ SolicitacaoId = 2,Usuario="Acacia Santos Mota",DataCadastro = DateTime.Now,Descricao="Solicitacão de Teste 2",Status="aprovado" },
@@ -103,9 +102,9 @@ namespace AirBnb.ViewModels
             };
         }
 
-        private static ObservableCollection<ExplorerItem> GetItens()
+        private static List<ExplorerItem> GetItens()
         {
-            return new ObservableCollection<ExplorerItem>()
+            return new List<ExplorerItem>()
             {
                 new ExplorerItem("https://quantocustaviajar.com/blog/wp-content/uploads/2017/01/lugares-mais-bonitos-do-mundo.jpg","Lugares"),
                 new ExplorerItem("https://gooutside-static-cdn.akamaized.net/wp-content/uploads/sites/3/2019/10/airbnb-lanca-experiencias-com-animais.jpg","Experiências"),
