@@ -20,12 +20,12 @@ namespace AirBnb
 
         private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
-            NavigationPage.SetHasBackButton(this, false);
-            lstSolicitacoes.BeginRefresh();
-            var texto = searchBar.Text;
-            lstSolicitacoes.ItemsSource = _mainviewModel.Solicitacao
-                                            .Where(x => x.Descricao.ToLower().Contains(texto.ToLower()));
-            lstSolicitacoes.EndRefresh();
+            //NavigationPage.SetHasBackButton(this, false);
+            //lstSolicitacoes.BeginRefresh();
+            //var texto = searchBar.Text;
+            //lstSolicitacoes.ItemsSource = _mainviewModel.Solicitacao
+            //                                .Where(x => x.Descricao.ToLower().Contains(texto.ToLower()));
+            //lstSolicitacoes.EndRefresh();
         }
 
         private void TapGestureRecognizer_Tapped(object sender, System.EventArgs e)
